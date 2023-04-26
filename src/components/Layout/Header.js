@@ -3,14 +3,21 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import styles from "../../styles/styles";
 import { categoriesData, productData } from "../../static/data";
-import { AiOutlineSearch, AiOutlineShoppingCart, AiOutlineHeart } from "react-icons/ai";
+import {
+  AiOutlineSearch,
+  AiOutlineShoppingCart,
+  AiOutlineHeart,
+} from "react-icons/ai";
 import { IoIosArrowDown, IoIosArrowForward } from "react-icons/io";
 import { BiMenuAltLeft } from "react-icons/bi";
 import DropDown from "./DropDown";
 import Navbar from "./Navbar";
 import { CgProfile } from "react-icons/cg";
+import { useSelector } from "react-redux";
+import { backend_url } from "../../server";
 
 const Header = ({ activeHeading }) => {
+  const { isAuthenticated, user } = useSelector((state) => state.user);
   const [searchTerm, setSearchTerm] = useState("");
   const [searchData, setSearchData] = useState(null);
   const [active, setActive] = useState(false);
@@ -102,7 +109,7 @@ const Header = ({ activeHeading }) => {
         <div
           className={`${styles.section} relative ${styles.noramlFlex} justify-between`}
         >
-          <div>
+          <div onClick={() => setDropDown(!dropDown)}>
             <div className="relative h-[60px] mt-[10px] w-[270px] hidden 1000px:block">
               <BiMenuAltLeft size={30} className="absolute top-3 left-2" />
               <button
@@ -129,29 +136,42 @@ const Header = ({ activeHeading }) => {
 
           <div className="flex">
             <div className={`${styles.noramlFlex}`}>
-                <div className="relative cursor-pointer mr-[15px]">
-                    <AiOutlineHeart size={30} color="rgb(255 255 255 / 83%)"/>
-                    <span className="absolute right-0 top-0 rounded-full bg-[#3bc177] w-4 h-4 top right p-0 m-0 text-white font-mono text-[12px] leading-tight text-center">
-                        0
-                    </span>
-                </div>
+              <div className="relative cursor-pointer mr-[15px]">
+                <AiOutlineHeart size={30} color="rgb(255 255 255 / 83%)" />
+                <span className="absolute right-0 top-0 rounded-full bg-[#3bc177] w-4 h-4 top right p-0 m-0 text-white font-mono text-[12px] leading-tight text-center">
+                  0
+                </span>
+              </div>
             </div>
 
             <div className={`${styles.noramlFlex}`}>
-                <div className="relative cursor-pointer mr-[15px]">
-                    <AiOutlineShoppingCart size={30} color="rgb(255 255 255 / 83%)"/>
-                    <span className="absolute right-0 top-0 rounded-full bg-[#3bc177] w-4 h-4 top right p-0 m-0 text-white font-mono text-[12px] leading-tight text-center">
-                        1
-                    </span>
-                </div>
+              <div className="relative cursor-pointer mr-[15px]">
+                <AiOutlineShoppingCart
+                  size={30}
+                  color="rgb(255 255 255 / 83%)"
+                />
+                <span className="absolute right-0 top-0 rounded-full bg-[#3bc177] w-4 h-4 top right p-0 m-0 text-white font-mono text-[12px] leading-tight text-center">
+                  1
+                </span>
+              </div>
             </div>
 
             <div className={`${styles.noramlFlex}`}>
-                <div className="relative cursor-pointer mr-[15px]">
-                    <Link to="/login">
-                    <CgProfile t size={30} color="rgb(255 255 255 / 83%)"/>
-                    </Link>
-                </div>
+              <div className="relative cursor-pointer mr-[15px]">
+                {isAuthenticated ? (
+                  <Link to="/profile">
+                    <img
+                      src={`${backend_url}${user.avatar}`}
+                      className="w-[40px] h-[40px] rounded-full"
+                      alt=""
+                    />
+                  </Link>
+                ) : (
+                  <Link to="/login">
+                    <CgProfile t size={30} color="rgb(255 255 255 / 83%)" />
+                  </Link>
+                )}
+              </div>
             </div>
           </div>
         </div>
