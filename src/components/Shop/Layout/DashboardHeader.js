@@ -14,9 +14,9 @@ const DashboardHeader = () => {
       <div>
         <Link to="/dashboard">
           <img
-            className="w-[30%]"
-            src="https://img.icons8.com/carbon-copy/256/sell.png"
-            alt=""
+           className="w-[30%]"
+           src="https://img.icons8.com/carbon-copy/256/sell.png"
+           alt=""
           />
         </Link>
       </div>

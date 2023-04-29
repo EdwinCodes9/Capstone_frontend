@@ -19,7 +19,7 @@ import {
   SellerActivationPage,
   ShopLoginPage,
 } from "./routes/Routes";
-import { ShopDashboardPage } from "./routes/ShopRoutes";
+import { ShopDashboardPage, ShopCreateProduct, ShopAllProducts, ShopCreateEvents, ShopAllEvents} from "./routes/ShopRoutes";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useEffect } from "react";
@@ -87,6 +87,38 @@ function App() {
           element={
             <SellerProtectedRoute>
               <ShopDashboardPage />
+            </SellerProtectedRoute>
+          }
+        />
+        <Route
+          path="/dashboard-create-product"
+          element={
+            <SellerProtectedRoute>
+              <ShopCreateProduct/>
+            </SellerProtectedRoute>
+          }
+        />
+        <Route
+          path="/dashboard-products"
+          element={
+            <SellerProtectedRoute>
+              <ShopAllProducts/>
+            </SellerProtectedRoute>
+          }
+        />
+           <Route
+          path="/dashboard-create-event"
+          element={
+            <SellerProtectedRoute>
+              <ShopCreateEvents/>
+            </SellerProtectedRoute>
+          }
+        />
+          <Route
+          path="/dashboard-events"
+          element={
+            <SellerProtectedRoute>
+              <ShopAllEvents/>
             </SellerProtectedRoute>
           }
         />
