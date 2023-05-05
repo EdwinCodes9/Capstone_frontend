@@ -7,7 +7,10 @@
     "@emotion/styled": "^11.10.6",
     "@mui/material": "^5.12.2",
     "@mui/x-data-grid": "^6.2.1",
+    "@paypal/react-paypal-js": "^7.8.3",
     "@reduxjs/toolkit": "^1.9.5",
+    "@stripe/react-stripe-js": "^2.1.0",
+    "@stripe/stripe-js": "^1.52.1",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
@@ -24,6 +27,8 @@
     "redux": "^4.2.1",
     "redux-thunk": "^2.4.2",
     "redux-toolkit": "^1.1.2",
+    "socket.io-client": "^4.6.1",
+    "timeago.js": "^4.0.2",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

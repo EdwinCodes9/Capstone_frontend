@@ -1,8 +1,8 @@
-import React from "react";
-import { useState, useEffect } from "react";
+import axios from "axios";
+import React, { useEffect } from "react";
+import { useState } from "react";
 import { useParams } from "react-router-dom";
-import axios from 'axios'
-import { server } from "../server"
+import { server } from "../server";
 
 const SellerActivationPage = () => {
   const { activation_token } = useParams();
@@ -10,20 +10,22 @@ const SellerActivationPage = () => {
 
   useEffect(() => {
     if (activation_token) {
-      const activationEmail = async () => {
-        try {
-          const res = await axios.post(`${server}/shop/activation`, {
+      const sendRequest = async () => {
+        await axios
+          .post(`${server}/shop/activation`, {
             activation_token,
+          })
+          .then((res) => {
+            console.log(res);
+          })
+          .catch((err) => {
+            setError(true);
           });
-          console.log(res.data.message);
-        } catch (error) {
-          console.log(error.response.data.message);
-          setError(true);
-        };
       };
-      activationEmail();
+      sendRequest();
     }
   }, []);
+
   return (
     <div
       style={{
@@ -34,13 +36,11 @@ const SellerActivationPage = () => {
         alignItems: "center",
       }}
     >
-        {
-            error ? (
-                <p>Your token is expired!</p>
-            ): (
-                <p>Your Account has been created succesfully!</p>
-            )
-        }
+      {error ? (
+        <p>Your token is expired!</p>
+      ) : (
+        <p>Your account has been created suceessfully!</p>
+      )}
     </div>
   );
 };

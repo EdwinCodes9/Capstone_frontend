@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { AiOutlinePlusCircle } from "react-icons/ai";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router";
+import { useNavigate } from "react-router-dom";
 import { createProduct } from "../../redux/actions/product";
 import { categoriesData } from "../../static/data";
 import { toast } from "react-toastify";
@@ -32,7 +32,14 @@ const CreateProduct = () => {
     }
   }, [dispatch, error, success]);
 
+  const handleImageChange = (e) => {
+    e.preventDefault();
 
+    let files = Array.from(e.target.files);
+    setImages((prevImages) => [...prevImages, ...files]);
+  };
+
+  console.log(images);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -51,13 +58,6 @@ const CreateProduct = () => {
     newForm.append("stock", stock);
     newForm.append("shopId", seller._id);
     dispatch(createProduct(newForm));
-  };
-
-  const handleImageChange = (e) => {
-    e.preventDefault();
-
-    let files = Array.from(e.target.files);
-    setImages((prevImages) => [...prevImages, ...files]);
   };
 
   return (
