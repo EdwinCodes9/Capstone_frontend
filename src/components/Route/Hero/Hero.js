@@ -15,7 +15,7 @@ const Hero = () => {
         <h1
           className={`text-[35px] leading-[1.2] 800px:text-[60px] text-[#3d3a3a] font-[600] capitalize`}
         >
-          Welcome To Edwin's Eccomerce Website <br /> Enjoy!!
+          Welcome To Edwin's E-com Website <br /> Enjoy!!
         </h1>
         <p className="pt-5 text-[16px] font-[Poppins] font-[400] text-[#000000ba]">
           Lorem ipsum dolor sit amet consectetur, adipisicing elit. Beatae,
